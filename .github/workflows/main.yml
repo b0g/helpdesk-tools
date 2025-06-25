@@ -9,7 +9,7 @@ jobs:
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
-          username: linuxserver.io
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: whoami
+          username: root
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: /root/CI_run_odoo_test.sh
