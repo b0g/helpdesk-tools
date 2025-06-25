@@ -1,0 +1,22 @@
+name: test
+on:
+  push:
+    branches:
+    - "16.0"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test to launch remote SSH command 
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd /root
+            ./CI_run_odoo_test.sh
+          host: ${{ secrets.HOST }}
+          user: root
+          key: ${{ secrets.PRIVATE_KEY}}
+#          pass: ${{ secrets.PASS }}
+          args: "-tt -vvv"
